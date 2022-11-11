@@ -27,3 +27,15 @@ def insertInto(connection,statement):
     cursor.execute(sqlStatement,statement)
     #Saves all transactions to the database 
     connection.commit()
+
+def main():
+    dataBase = "sensorRecord.db"
+    connection = connectionCreation(dataBase)
+    with connection:
+        fullLine = ""
+        db = open("./Data/states.csv")
+        for line in db:
+            fullLine += line
+            contents = fullLine.split(",")
+            insertInto(connection,[int(contents[0][1:-1]),contents[2][1:-1],contents[3][1:-1],contents[7][1:-1]])
+            
