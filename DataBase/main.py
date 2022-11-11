@@ -26,12 +26,20 @@ def insertInto(connection,statement):
 
 def main():
     dataBase = "sensorRecord.db"
+    i = 0
     connection = connectionCreation(dataBase)
+    genericQuerie(connection,'''DROP TABLE IF EXISTS Probe''')
+    genericQuerie(connection,'''CREATE TABLE Probe ( ID INTEGER PRIMARY KEY, Name TEXT NOT NULL, Value TEXT NOT NULL, Date TEXT NOT NULL )''')
     with connection:
         fullLine = ""
         db = open("./Data/states.csv")
         for line in db:
             fullLine += line
             contents = fullLine.split(",")
-            insertInto(connection,[int(contents[0][1:-1]),contents[2][1:-1],contents[3][1:-1],contents[7][1:-1]])
+            nbcontents = len(contents)
+            if nbcontents >= 15:
+                fullLine = ""
+                insertInto(connection,[int(contents[0][1:-1]),contents[2][1:-1],contents[3][1:-1],contents[7][1:-1]])
+    connection.commit()
+            
 main()
