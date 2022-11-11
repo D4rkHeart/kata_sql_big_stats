@@ -15,8 +15,6 @@ def genericQuerie(connection,statement):
     cursor = connection.cursor()
     # Execute the statement 
     cursor.execute(statement)
-    #Saves all transactions to the database 
-    connection.commit()
 
 # Create the insert statement
 def insertInto(connection,statement):
@@ -25,8 +23,6 @@ def insertInto(connection,statement):
     cursor = connection.cursor()
     # Execute the statement 
     cursor.execute(sqlStatement,statement)
-    #Saves all transactions to the database 
-    connection.commit()
 
 def main():
     dataBase = "sensorRecord.db"
