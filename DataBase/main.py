@@ -38,4 +38,4 @@ def main():
             fullLine += line
             contents = fullLine.split(",")
             insertInto(connection,[int(contents[0][1:-1]),contents[2][1:-1],contents[3][1:-1],contents[7][1:-1]])
-            
+main()
