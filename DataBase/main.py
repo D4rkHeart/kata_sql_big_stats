@@ -17,3 +17,13 @@ def genericQuerie(connection,statement):
     cursor.execute(statement)
     #Saves all transactions to the database 
     connection.commit()
+
+# Create the insert statement
+def insertInto(connection,statement):
+    sqlStatement = '''INSERT INTO Probe(ID,Name,Value,Date) VALUES(?,?,?,?)'''
+    #invoke methods that execute SQLite statements
+    cursor = connection.cursor()
+    # Execute the statement 
+    cursor.execute(sqlStatement,statement)
+    #Saves all transactions to the database 
+    connection.commit()
